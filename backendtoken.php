@@ -59,8 +59,24 @@ class plgSystemBackendtoken extends CMSPlugin
 			return;
 		}
 
-		$token   = $this->params->get('token', 1);
-		$request = $this->app->input->getString('token', 'no token set');
+		// Consider request empty
+		$request = '';
+
+		// Handle a direct entry to the admin login page
+		if ($this->app->input->getMethod() === 'GET')
+		{
+			$request = $this->app->input->getString('token', 'no token set');
+		}
+
+		// Handle after login form submission
+		if ($this->app->input->getMethod() === 'POST')
+		{
+			// Need to get the token from the referer URL
+			$uri = new Uri($_SERVER['HTTP_REFERER']);
+			$request = $uri->getVar('token', 'no token set');
+		}
+
+		$token = $this->params->get('token', 1);
 
 		// Invalid access token
 		if ($token !== $request)
