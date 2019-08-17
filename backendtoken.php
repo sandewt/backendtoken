@@ -81,12 +81,12 @@ class plgSystemBackendtoken extends CMSPlugin
 		// Invalid access token
 		if ($token !== $request)
 		{
-			$url = $this->params->get('url');
+			$url = (string) $this->params->get('url');
 
 			// Fallback to site
 			if ($url === '')
 			{
-				$url = URI::root();
+				$url = Uri::root();
 			}
 
 			$this->app->redirect($url);
