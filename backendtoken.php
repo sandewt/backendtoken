@@ -72,7 +72,7 @@ class plgSystemBackendtoken extends CMSPlugin
 		if ($this->app->input->getMethod() === 'POST')
 		{
 			// Need to get the token from the referer URL
-			$uri = $this->app->input->server->getString('HTTP_REFERER');
+			$uri = new Uri($_SERVER['HTTP_REFERER']);
 			$request = $uri->getVar('token', 'no token set');
 		}
 
