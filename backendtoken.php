@@ -12,7 +12,7 @@
  * @link      https://rolandd.com
  **/
 
-defined('_JEXEC') or die; // test
+defined('_JEXEC') or die;
 
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Factory;
